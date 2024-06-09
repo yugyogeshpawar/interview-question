@@ -5,15 +5,11 @@ metadata:
 spec:
   volumes:
     - name: shared-data
-      emptyDir: {} # Shared storage for communication
+      emptyDir: {}
   initContainers:
     - name: clone-repo
-      image: alpine/git # Image with Git installed
-      command: ["/bin/sh", "-c"]
-      args:
-        - |
-          git clone https://github.com/Anshuman2121/netflix-clone.git /shared
-          
+      image: alpine/git
+      command: ["git", "clone", "https://github.com/yugyogeshpawar/instant-help.git", "/shared"]
       volumeMounts:
         - name: shared-data
           mountPath: /shared
@@ -24,5 +20,6 @@ spec:
         - containerPort: 80
       volumeMounts:
         - name: shared-data
-          mountPath: /usr/share/nginx/html # Serve the cloned files
+          mountPath: /usr/share/nginx/html
   restartPolicy: Always
+
