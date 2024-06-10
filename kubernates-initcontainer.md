@@ -28,4 +28,13 @@ Init containers can communicate with the main containers using the shared volume
 ## How to handle init container failure in kubernetes?
 ## How to debug init container in kubernetes?
 ## How to handle init container lifecycle in kubernetes?
+## How to handle init container lifecycle in kubernetes?
+
+When defining an init container, you can specify a restart policy for the container, just like with the main containers. This ensures that the init container restarts if it fails. You can also specify a timeout for the init container, which specifies how long Kubernetes should wait for the init container to complete before considering it a failure. By default, the timeout is set to 600 seconds.
+
+When defining the init container, you can also specify a termination grace period, which specifies how long Kubernetes should wait for any processes in the init container to terminate before considering the container finished. By default, the termination grace period is set to 30 seconds.
+
+Kubernetes will consider the pod ready when all the init containers have completed, and the main containers are ready to start. This ensures that the pod is only considered ready when the initialization tasks have completed.
 ## How to troubleshoot init container in kubernetes?
+
+
